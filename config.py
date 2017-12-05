@@ -1,4 +1,4 @@
-AUTH = ('sinwar', '######')
+AUTH = ('sinwar', '###')
 
 DATABASE_NAME = 'mining'
 

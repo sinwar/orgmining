@@ -95,8 +95,9 @@ def update_user_commit_files(user, files):
 def get_repos():
     repos = requests.get(REPOS_URL, auth=AUTH).json()
 
-    if REPO_NAMES:
-        repos = filter(lambda x: x.get('name') in REPO_NAMES, repos)
+    print repos
+    # if REPO_NAMES:
+    #    repos = filter(lambda x: x.get('name') in REPO_NAMES, repos)
 
     if repos:
         db.repos.insert(repos)
@@ -150,7 +151,7 @@ for repo in get_repos():
             [f.get('filename') for f in commit.get('files')]
         )
 
-
+"""
 for user, data in USERS.iteritems():
     slack_user = SLACK_USERS.get(user, user)
     talker_data = json.loads(open('talker.json').read())
@@ -162,3 +163,4 @@ for user, data in USERS.iteritems():
 
     data.update(_user=user.lower())
     db.users.insert(data)
+"""

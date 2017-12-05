@@ -24,6 +24,9 @@ def index():
 
 @app.route("/users_by_skills")
 def users_by_skills():
+    yay = mongo.db.users.find()
+    for i in yay:
+        print i + "us"
     best_of_all = mongo.db.users.find().sort([
         ("back_end", pymongo.DESCENDING),
         ("front_end", pymongo.DESCENDING),
