@@ -1,4 +1,4 @@
-<h2>Detalhe: <a href="/detail/{{ user.get('_user') }}">@{{ user.get('_user') }}</a></h2>
+<h2>Developer: <a href="/detail/{{ user.get('_user') }}">@{{ user.get('_user') }}</a></h2>
 <hr>
 
 {% set back_end = user.get('back_end') and user.get('back_end')|log|round(1, 'floor') or 0 %}
@@ -13,12 +13,13 @@
 <h3>
   Back-end: {{ back_end }} <small>({{ user.get('back_end', 0) }})</small><br/>
   Front-end: {{ front_end }} <small>({{ user.get('front_end', 0) }})</small><br/>
-  Abriu issues: {{ opened_issues }} <small>({{ user.get('opened_issues', 0) }})</small><br/>
+  Opened issues: {{ opened_issues }} <small>({{ user.get('opened_issues', 0) }})</small><br/>
   Setuper: {{ setuper }} <small>({{ user.get('setuper', 0) }})</small><br/>
   Commiter: {{ commiter }} <small>({{ user.get('commiter', 0) }})</small><br/>
-  Talker: {{ talker }} <small>({{ user.get('talker', 0) }})</small><br/>
+  <!--Talker: {{ talker }} <small>({{ user.get('talker', 0) }})</small><br/>
   Channeler: {{ channeler }} <small>({{ user.get('channeler', 0) }})</small><br/>
   Sharer: {{ links_shared }} <small>({{ user.get('links_shared', 0) }})</small><br/>
+  -->
 </h3>
 
 <div class="chart" 

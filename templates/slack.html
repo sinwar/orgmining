@@ -2,7 +2,6 @@
 
 {% block body %}
 
-
 	<div class="row">
 		<div class="col-md-12 heading">
 			<h2>Organization Contributors</h2>
@@ -17,10 +16,16 @@
 			<a href="/slackreport"><button type="button" class="btn btn-info">Slack analysis of contributors</button></a>			
 		</div>				
 	</div>
-  
-  <hr>
+	<br><br>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-4">
+			
+		{% for message in messages['messages'] %}
+			<h3> {{ message['user'] }} ---> {{ message['text'] }}</h3>
+		{% endfor %}
+		</div>
+	</div>
 
-  {% for user in users %}
-    {% include "user.html" with context %}
-  {% endfor %}
+
+  
 {% endblock body %}

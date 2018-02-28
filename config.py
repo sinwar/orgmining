@@ -1,28 +1,28 @@
-AUTH = ('sinwar', '###')
+AUTH = ('sinwar', '4premsinwar')
 
 DATABASE_NAME = 'mining'
 
-REPO_NAMES = ['<GITHUB_REPOSITORY_NAMES>']
+REPO_NAMES = ['sp2admn']
 
 EXCLUDED_USERS = ['0x48piraj']
 
 SLACK_USERS = {
-    '<GITHUB_USERNAME>': '<SLACK_USERNAME>',
+    'sinwar': 'sinwar',
 }
 
-REPOS_URL = 'https://api.github.com/orgs/coala/repos'
+REPOS_URL = 'https://api.github.com/orgs/sppadmn/repos'
 
-ISSUES_URL = ('https://api.github.com/repos/coala/'
+ISSUES_URL = ('https://api.github.com/repos/sppadmn/'
               '{repo}/issues?state=all&filter=all')
 
-EVENTS_URL = ('https://api.github.com/repos/coala/'
+EVENTS_URL = ('https://api.github.com/repos/sppadmn/'
               '{repo}/issues/{number}/events')
 
-COMMITS_URL = ('https://api.github.com/repos/coala/'
+COMMITS_URL = ('https://api.github.com/repos/sppadmn/'
                '{repo}/commits')
 
-BACK_END_QUERIES = ['<BACK_END_FOLDERS_OR_FILES>']
+BACK_END_QUERIES = ["adduser.php", "ind.php", "admin.php", "login.php", "json.php"]
 
-FRONT_END_QUERIES = ['<FRONT_END_FOLDERS_OR_FILES>']
+FRONT_END_QUERIES = ["css/, mini"]
 
-SETUPER_QUERIES = ['SETUPER_FOLDER_OR_FILES']
+SETUPER_QUERIES = ["images"]

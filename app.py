@@ -5,6 +5,7 @@ from flask import Flask, request, redirect, render_template
 from bson.objectid import ObjectId
 from json import dumps
 from math import log
+from slackclient import SlackClient
 
 from random import randint
 
@@ -23,10 +24,7 @@ def index():
     return render_template("index.html", users=users, randint=randint)
 
 @app.route("/users_by_skills")
-def users_by_skills():
-    yay = mongo.db.users.find()
-    for i in yay:
-        print i + "us"
+def users_by_skills():    
     best_of_all = mongo.db.users.find().sort([
         ("back_end", pymongo.DESCENDING),
         ("front_end", pymongo.DESCENDING),
@@ -52,6 +50,13 @@ def detail(user):
     user = mongo.db.users.find_one_or_404({'_user': user})
     return render_template("detail.html", user=user, randint=randint)
 
+
+@app.route("/slackreport")
+def slackreport():
+    slack_client = SlackClient('xoxp-322027627588-321396540064-321397039120-8b0d2dc7e29b8e127b13e32a10d3f17d')
+
+    slack_messages = slack_client.api_call("channels.history", channel='C9FEMSVTK', pretty=1)
+    return render_template("slack.html", messages=slack_messages)
 
 if __name__ == "__main__":
     app.run(debug=True)

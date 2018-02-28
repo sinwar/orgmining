@@ -9,7 +9,7 @@ client = MongoClient()
 db = getattr(client, DATABASE_NAME)
 
 # User local storage
-USERS = {}
+USERS = {} # a dictionary to save user data
 DEFAULT_USER = dict(
     files=list(), back_end=0, front_end=0, 
     opened_issues=0, talker=0, links_shared=0, 
@@ -81,6 +81,7 @@ def update_user_commit_files(user, files):
     back_end = USERS[user].get('back_end', 0)
     setuper = USERS[user].get('setuper', 0)
     commiter = USERS[user].get('commiter', 0)
+    print(old_files)
     front_end += len([f for f in old_files if any([q in f for q in FRONT_END_QUERIES])])
     back_end += len([f for f in old_files if any([q in f for q in BACK_END_QUERIES])])
     setuper += len([f for f in old_files if any([q in f for q in SETUPER_QUERIES])])
@@ -95,12 +96,12 @@ def update_user_commit_files(user, files):
 def get_repos():
     repos = requests.get(REPOS_URL, auth=AUTH).json()
 
-    print repos
+    print(repos)
     # if REPO_NAMES:
     #    repos = filter(lambda x: x.get('name') in REPO_NAMES, repos)
 
     if repos:
-        db.repos.insert(repos)
+        db.repos.insert(repos) # insert in mongo db
     return repos
 
 def get_issues(repo, state='open'):
@@ -151,16 +152,16 @@ for repo in get_repos():
             [f.get('filename') for f in commit.get('files')]
         )
 
-"""
+
 for user, data in USERS.iteritems():
-    slack_user = SLACK_USERS.get(user, user)
-    talker_data = json.loads(open('talker.json').read())
-    update_user_talker(user, talker_data.get(slack_user))
-    channeler_data = json.loads(open('channeler.json').read())
-    update_user_channeler(user, channeler_data.get(slack_user))
-    links_shared_data = json.loads(open('links-shared.json').read())
-    update_user_links_shared(user, links_shared_data.get(slack_user))
+    # slack_user = SLACK_USERS.get(user, user)
+    # talker_data = json.loads(open('talker.json').read())
+    # update_user_talker(user, talker_data.get(slack_user))
+    # channeler_data = json.loads(open('channeler.json').read())
+    # update_user_channeler(user, channeler_data.get(slack_user))
+    #links_shared_data = json.loads(open('links-shared.json').read())
+    # update_user_links_shared(user, links_shared_data.get(slack_user))
 
     data.update(_user=user.lower())
     db.users.insert(data)
-"""
+
