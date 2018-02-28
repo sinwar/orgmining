@@ -7,6 +7,6 @@ A Flask based mining project to grap data from Github and Slack, save in mongodb
 
 # Team 
 1. sinwar
-2. saurabjain
+2. sourabhjain
 3. pradeepkumar
 
