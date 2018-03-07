@@ -53,7 +53,9 @@ def detail(user):
 
 @app.route("/slackreport")
 def slackreport():
-    slack_client = SlackClient('xoxp-322027627588-321396540064-321397039120-8b0d2dc7e29b8e127b13e32a10d3f17d')
+	# last slack key is expired.
+	# it should not be publicly exposed.
+    slack_client = SlackClient('######')
 
     slack_messages = slack_client.api_call("channels.history", channel='C9FEMSVTK', pretty=1)
     return render_template("slack.html", messages=slack_messages)
